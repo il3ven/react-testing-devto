@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [todo, setTodo] = useState("");
+
+  useEffect(() => {
+    const fetch = async () => {
+      const _todo = (
+        await axios.get(`https://jsonplaceholder.typicode.com/todos/1`)
+      ).data;
+      setTodo(_todo.title);
+    };
+
+    fetch();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React App</h1>
+      <h2 data-testid="clicks">Title: {todo}</h2>
     </div>
   );
 }

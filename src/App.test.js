@@ -1,8 +1,22 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, fireEvent } from "@testing-library/react";
+import axios from "axios";
+import App from "./App";
 
-test('renders learn react link', () => {
+jest.mock("axios");
+
+test("renders learn react link", () => {
+  axios.get.mockImplementation(() => {
+    return {
+      data: {
+        userId: 1,
+        id: 1,
+        title: "delectus aut autem",
+        completed: false,
+      },
+    };
+  });
+
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByText(/React App/i)).toBeInTheDocument()
 });
