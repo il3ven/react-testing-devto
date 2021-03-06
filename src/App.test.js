@@ -19,4 +19,5 @@ test("renders learn react link", async () => {
   render(<App />);
 
   expect(screen.getByText(/React App/i)).toBeInTheDocument();
+  expect(screen.getByTestId('title').innerHTML).toBe('Title: delectus aut autem');
 });
