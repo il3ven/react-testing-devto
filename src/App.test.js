@@ -1,10 +1,10 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import axios from "axios";
 import App from "./App";
 
 jest.mock("axios");
 
-test("renders learn react link", () => {
+test("renders learn react link", async () => {
   axios.get.mockImplementation(() => {
     return {
       data: {
@@ -18,5 +18,5 @@ test("renders learn react link", () => {
 
   render(<App />);
 
-  expect(screen.getByText(/React App/i)).toBeInTheDocument()
+  expect(screen.getByText(/React App/i)).toBeInTheDocument();
 });
