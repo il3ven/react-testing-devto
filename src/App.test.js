@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import App from "./App";
 
@@ -19,5 +19,9 @@ test("renders learn react link", async () => {
   render(<App />);
 
   expect(screen.getByText(/React App/i)).toBeInTheDocument();
-  expect(screen.getByTestId('title').innerHTML).toBe('Title: delectus aut autem');
+  await waitFor(() => {
+    expect(screen.getByTestId("title").innerHTML).toBe(
+      "Title: delectus aut autem"
+    );
+  });
 });
